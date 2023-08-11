@@ -34,5 +34,20 @@ public partial class Sprite2Dtest : Sprite2D
 
 		Position += velocity * (float)delta;
 	}
-	
+
+	public override void _Ready()
+	{
+		var timer = GetNode<Timer>("Timer");
+		timer.Timeout += OnTimerTimeout;
+	}
+
+	private void OnButtonPressed()
+	{
+		SetProcess(!IsProcessing());
+	}
+
+	private void OnTimerTimeout()
+	{
+		Visible = !Visible;
+	}
 }
